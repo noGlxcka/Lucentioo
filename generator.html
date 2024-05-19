@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Generator</title>
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            filter: blur(2px); /* Initial blur effect on the body */
+            transition: filter 0.5s ease; /* Smooth transition for blur effect */
+        }
+
+        h1 {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: glow 1s infinite alternate;
+            font-size: 2rem; /* Increase font size for h1 */
+        }
+
+        button, input {
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ff0000;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000;
+            }
+            to {
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 60px #ff0000;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+            }
+            70% {
+                transform: scale(1.2);
+                box-shadow: 0 0 10px 10px rgba(255, 0, 0, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+            }
+        }
+
+        @keyframes myAnim {
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+
+        .circle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: #ff0000;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 20px;
+            border: 2px solid #ff0000;
+            text-align: center;
+            z-index: 1000;
+            animation: myAnim 2s ease 0s 1 normal forwards;
+            filter: none; /* Remove blur effect on the dialog */
+        }
+
+        .dialog button {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="dialog">
+        <p>This Is Our Official Website Nothing Else</p>
+        <button onclick="closeDialog()">Okay</button>
+    </div>
+    <h1>Key Generator</h1>
+    <button onclick="generateKey()">Generate Key</button>
+    <input type="text" id="keyDisplay" readonly>
+    <div class="circle"></div>
+    <script>
+        function generateKey() {
+            const keys = [
+                'KEY-1234-5678-ABCD',
+                'KEY-8765-4321-DCBA',
+                'KEY-1122-3344-AABB'
+            ];
+            const key = keys[Math.floor(Math.random() * keys.length)];
+            document.getElementById('keyDisplay').value = key;
+            document.body.style.filter = 'none'; // Remove blur effect when generating key
+        }
+
+        function closeDialog() {
+            document.querySelector('.dialog').style.display = 'none';
+            document.body.style.filter = 'none'; // Remove blur effect on close
+        }
+    </script>
+</body>
+</html>
